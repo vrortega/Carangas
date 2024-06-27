@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Cars: Codable {
+class Car: Codable {
     var _id: String
     var brand: String
     var gasType: Int
