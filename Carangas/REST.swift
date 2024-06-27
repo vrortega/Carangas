@@ -47,7 +47,7 @@ class REST {
                     guard let data = data else {return}
                     do {
                         let cars = try JSONDecoder().decode([Car].self, from: data)
-                      onComplete(cars)
+                        onComplete(cars)
                     } catch {
                         print("error.localizedDescription")
                         onError(.invalidJSON)
@@ -63,4 +63,48 @@ class REST {
         datatask.resume()
     }
     
+    class func save(car: Car, onComplete: @escaping (Bool) -> Void) {
+        guard let url = URL(string: basePath) else {
+            onComplete(false)
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let json = try? JSONEncoder().encode(car) else {
+            onComplete(false)
+            return
+        }
+        request.httpBody = json
+        
+        // Imprime o JSON que está sendo enviado
+        if let jsonString = String(data: json, encoding: .utf8) {
+            print("JSON Payload: \(jsonString)")
+        }
+        
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                onComplete(false)
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Status Code: \(httpResponse.statusCode)")
+                
+                if (200...299).contains(httpResponse.statusCode) {
+                    onComplete(true)
+                    return
+                }
+            }
+            
+            if let data = data {
+                print("Response Data: \(String(data: data, encoding: .utf8) ?? "")")
+            }
+            
+            onComplete(false)
+        }
+        dataTask.resume()
+    }
 }
+        
