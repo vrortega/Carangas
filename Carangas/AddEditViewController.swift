@@ -23,6 +23,13 @@ class AddEditViewController: UIViewController {
     // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        if car != nil {
+            tfBrand.text = car.brand
+            tfName.text = car.name
+            tfPrice.text = "\(car.price)" 
+            scGasType.selectedSegmentIndex = car.gasType
+            btAddEdit.setTitle("Alterar carro", for: .normal)
+        }
     }
     
     // MARK: - IBActions
@@ -37,17 +44,26 @@ class AddEditViewController: UIViewController {
         
         loading.startAnimating()
         
-        REST.save(car: car) { (success) in
-            DispatchQueue.main.async {
-                self.loading.stopAnimating()
-                if success {
-                    self.goBack()
-                } else {
-                    // Exibir uma mensagem de erro para o usuário
-                    let alert = UIAlertController(title: "Erro", message: "Não foi possível salvar o carro.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
+        if car._id == nil {
+            REST.save(car: car) { success in
+                self.handleResponse(success: success, action: "salvar")
+            }
+        } else {
+            REST.update(car: car) { success in
+                self.handleResponse(success: success, action: "atualizar")
+            }
+        }
+    }
+    
+    func handleResponse(success: Bool, action: String) {
+        DispatchQueue.main.async {
+            self.loading.stopAnimating()
+            if success {
+                self.goBack()
+            } else {
+                let alert = UIAlertController(title: "Erro", message: "Não foi possível \(action) o carro.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
