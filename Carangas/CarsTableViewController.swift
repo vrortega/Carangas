@@ -52,7 +52,6 @@ class CarsTableViewController: UITableViewController {
         return cell
     }
 
-    // Swipe to delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let carToDelete = cars[indexPath.row]
@@ -64,7 +63,6 @@ class CarsTableViewController: UITableViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        // Exibir uma mensagem de erro para o usuário
                         let alert = UIAlertController(title: "Erro", message: "Não foi possível deletar o carro.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
