@@ -31,6 +31,32 @@ class REST {
     
     private static let session = URLSession(configuration: configuration)
     
+    class func loadBrands(onComplete: @escaping ([Brand]?) -> Void) {
+        guard let url = URL(string: "https://parallelum.com.br/fipe/api/v1/carros/marcas") else {
+            onComplete(nil)
+            return
+        }
+        let dataTask = session.dataTask(with: url) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else {
+               onComplete(nil)
+                return
+            }
+            if response.statusCode == 200 {
+                guard let data = data else {return}
+                do {
+                    let brands = try JSONDecoder().decode([Brand].self, from: data)
+                    onComplete(brands)
+                } catch {
+                    onComplete(nil)
+                }
+            } else {
+                onComplete(nil)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    
     class func loadCars(onComplete: @escaping ([Car]) -> Void, onError: @escaping (CarError) -> Void) {
         guard let url = URL(string: basePath) else {
             onError(.url)
