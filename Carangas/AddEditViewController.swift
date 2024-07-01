@@ -85,7 +85,7 @@ class AddEditViewController: UIViewController {
         DispatchQueue.main.async {
             self.loading.stopAnimating()
             if success {
-                self.goBack()
+                self.goBackToRoot()
             } else {
                 let alert = UIAlertController(title: "Erro", message: "Não foi possível \(action) o carro.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -108,9 +108,17 @@ class AddEditViewController: UIViewController {
         }
     }
     
-    func goBack() {
+    func goBackToRoot() {
         DispatchQueue.main.async {
-            self.navigationController?.popViewController(animated: true)
+            if let navigationController = self.navigationController {
+                for controller in navigationController.viewControllers {
+                    if controller is CarsTableViewController {
+                        navigationController.popToViewController(controller, animated: true)
+                        break
+                    }
+                }
+            }
+
         }
     }
     
