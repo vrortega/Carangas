@@ -16,7 +16,7 @@ Carangas
 ├── Models
 │   ├── Car.swift
 │   └── Brand.swift
-├── Network
+├── API
 │   └── REST.swift
 ├── Views
 │   ├── Main.storyboard
