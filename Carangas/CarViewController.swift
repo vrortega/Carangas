@@ -20,9 +20,15 @@ class CarViewController: UIViewController {
     // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        guard car != nil else {
+//            fatalError("CarViewController recebeu um erro nao configurado")
+//        }
         lbBrand.text = car.brand
         lbGasType.text = car.gas
         lbPrice.text = "R$ \(car.price)"
+        navigationItem.title = car.name
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! AddEditViewController

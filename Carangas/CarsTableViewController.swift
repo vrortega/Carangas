@@ -73,4 +73,13 @@ class CarsTableViewController: UITableViewController {
             }
         }
     }
+    
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "viewSegue" {
+              let vc = segue.destination as! CarViewController
+              if let indexPath = tableView.indexPathForSelectedRow {
+                  vc.car = cars[indexPath.row]
+              }
+          }
+      }
 }
