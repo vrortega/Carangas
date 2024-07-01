@@ -73,12 +73,12 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		4E4DE8442C332131003DABD3 /* Network */ = {
+		4E4DE8442C332131003DABD3 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				4E4CFFA02C2C9E5F0081C976 /* REST.swift */,
 			);
-			path = Network;
+			path = API;
 			sourceTree = "<group>";
 		};
 		A1B18CF81F9C1BDD00313110 = {
@@ -102,7 +102,7 @@
 			children = (
 				A1B18D041F9C1BDD00313110 /* AppDelegate.swift */,
 				4E4DE83F2C3320D7003DABD3 /* Models */,
-				4E4DE8442C332131003DABD3 /* Network */,
+				4E4DE8442C332131003DABD3 /* API */,
 				4E4DE8432C33211F003DABD3 /* Controllers */,
 				4E4DE8422C332110003DABD3 /* Views */,
 				A1B18D0B1F9C1BDD00313110 /* Assets.xcassets */,
