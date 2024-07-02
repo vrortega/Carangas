@@ -26,7 +26,7 @@ class CarViewController: UIViewController {
         
         lbBrand.text = car.brand
         lbGasType.text = car.gas
-        lbPrice.text = "R$ \(car.price)"
+        lbPrice.text = formatPrice(car.price)
         title = car.name
         
         let name = (title! + "+" + car.brand).replacingOccurrences(of: " ", with: "+")
@@ -44,6 +44,13 @@ class CarViewController: UIViewController {
         let vc = segue.destination as! AddEditViewController
         vc.car = car
     }
+}
+
+func formatPrice(_ price: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = Locale(identifier: "pt_BR")
+    return formatter.string(from: NSNumber (value: price)) ?? "R$ 0,00"
 }
 
 extension CarViewController: WKNavigationDelegate, WKUIDelegate {
