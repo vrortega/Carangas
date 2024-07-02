@@ -26,6 +26,20 @@ Carangas
     └── Assets.xcassets
 ```
 
+## Estrutura do projeto 📁
+
+### Controllers
+- <b>CarListViewController.swift:</b> Controlador responsável por gerenciar a tela que lista todos os carros disponíveis.
+- <b>CarDetailViewController.swift:</b> Controlador responsável por gerenciar a tela que mostra os detalhes de um carro específico.
+- <b>AddEditCarViewController.swift:</b> Controlador responsável por gerenciar a tela de adição e edição de carros.
+
+### Models
+- <b>Car.swift:</b> Modelo que representa um carro.
+- <b>Brand.swift:</b> Modelo que representa uma marca de carro.
+
+### Services
+- <b>REST.swift:</b> Classe que gerencia todas as requisições REST feitas pelo aplicativo. Inclui métodos para carregar, salvar, atualizar e deletar carros, além de carregar marcas.
+
 ## Link das APIs Utilizadas 🌐
 - API de Carros: <a href="https://carangas.herokuapp.com/cars" target="_blank">Carangas API</a>
 - API de Marcas de Carros: <a href="https://parallelum.com.br/fipe/api/v1/carros/marcas" target="_blank">Parallelum API</a>
