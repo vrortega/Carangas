@@ -29,9 +29,9 @@ Carangas
 ## Estrutura do projeto 📁
 
 ### Controllers
-- <b>CarListViewController.swift:</b> Controlador responsável por gerenciar a tela que lista todos os carros disponíveis.
-- <b>CarDetailViewController.swift:</b> Controlador responsável por gerenciar a tela que mostra os detalhes de um carro específico.
-- <b>AddEditCarViewController.swift:</b> Controlador responsável por gerenciar a tela de adição e edição de carros.
+- <b>CarsTableViewController.swift:</b> Controlador responsável por gerenciar a tela que lista todos os carros disponíveis.
+- <b>CarViewController.swift:</b> Controlador responsável por gerenciar a tela que mostra os detalhes de um carro específico.
+- <b>AddEditViewController.swift:</b> Controlador responsável por gerenciar a tela de adição e edição de carros.
 
 ### Models
 - <b>Car.swift:</b> Modelo que representa um carro.
